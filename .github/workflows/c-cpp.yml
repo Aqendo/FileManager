@@ -17,11 +17,17 @@ jobs:
     - name: update apt repos
       run: sudo apt update -y
     - name: install cmake
-      run: sudo apt install cmake make g++ -y
-    - name: Generate build files
-      run: cmake .
-    - name: Build files
-      run: cmake --build .
+      run: sudo apt install make wget gcc g++ -y
+    - name: From this point idk what am I doing
+      run:
+        wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.4.tar.gz
+        tar xvzf ncurses-6.4.tar.gz
+        cd ncurses-*
+        sudo ./configure
+        sudo make
+        cd ..
+        sudo apt install libncurses-dev
+        g++ src/*.cpp src/core/*.cpp -lncurses -static-libstdc++ -static -static-libgcc /usr/lib/x86_64-linux-gnu/libncurses.a /usr/lib/x86_64-linux-gnu/libtinfo.a -o main
     - name: archive resulting executable
       uses: actions/upload-artifact@v4
       with:
