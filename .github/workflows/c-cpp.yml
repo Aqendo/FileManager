@@ -22,7 +22,7 @@ jobs:
       run:
         wget https://ftp.gnu.org/gnu/ncurses/ncurses-6.4.tar.gz;
         tar xvzf ncurses-6.4.tar.gz;
-        cd ncurses-*;
+        cd ncurses-6.4/;
         sudo ./configure;
         sudo make;
         cd ..;
